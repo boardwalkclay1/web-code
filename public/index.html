@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Code — Matrix Interface</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="theme-color" content="#001a00" />
+</head>
+<body>
+  <canvas id="matrix-canvas"></canvas>
+
+  <div id="loading-screen"></div>
+
+  <div id="app">
+    <header style="padding:18px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="font-size:20px;color:#00ff41;font-family:'Courier New',monospace">The Code</div>
+      <a id="start-lesson" href="/lessons/websites.html" style="background:#00ff41;color:#000;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:700">Start your lesson here</a>
+    </header>
+
+    <aside id="sidebar"></aside>
+
+    <main id="main">
+      <h1 class="page-title">Welcome to The Code</h1>
+      <p class="page-subtitle">Matrix-styled learning: websites, apps, microcontrollers, and pen testing.</p>
+
+      <section class="section-block">
+        <h2 class="section-title">Categories</h2>
+        <div class="lesson-grid" id="category-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/modules/sections.js"></script>
+  <script src="/modules/matrix.js"></script>
+  <script>
+    // register service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    }
+  </script>
+</body>
+</html>
