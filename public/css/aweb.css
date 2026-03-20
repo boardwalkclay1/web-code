@@ -1,0 +1,115 @@
+/* aweb.css — Matrix themed UI, success flash, guard, buttons, cards */
+
+/* Theme variables */
+:root{
+  --bg:#000000;
+  --panel:rgba(0,0,0,0.62);
+  --neon:#00ff41;
+  --neon-weak:rgba(0,255,65,0.12);
+  --muted:rgba(0,255,65,0.6);
+  --glass-border:rgba(0,255,65,0.08);
+  --accent-dark:#002200;
+  --max-width:1100px;
+  --radius:10px;
+  --mono: "Courier New", monospace;
+}
+
+/* Global reset and base */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--neon);font-family:var(--mono);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+
+/* Background image layer (keeps canvas visible) */
+.site-bg{
+  position:fixed;inset:0;z-index:-2;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)),
+    url('/assets/img/code-index.png');
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  pointer-events:none;opacity:0.9;
+}
+
+/* Matrix canvas sits above background */
+#matrix-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:-1;background:transparent}
+
+/* App layout */
+.app-shell{display:grid;grid-template-columns:260px 1fr;min-height:100vh;gap:0}
+@media (max-width:880px){.app-shell{grid-template-columns:1fr}}
+
+/* Sidebar */
+.sidebar{
+  background:#000;border-right:1px solid var(--neon-weak);padding:18px;
+  backdrop-filter:blur(6px) brightness(0.6);
+}
+.sidebar .logo{font-weight:700;color:var(--neon);font-size:18px}
+
+/* Header */
+.header{
+  display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--neon-weak);
+  background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.12));
+}
+.header .title{font-size:20px;color:var(--neon)}
+.header .start-btn{
+  background:var(--neon);color:#000;padding:10px 16px;border-radius:999px;text-decoration:none;font-weight:700;border:0;cursor:pointer;
+  box-shadow:0 6px 18px rgba(0,255,65,0.06);
+}
+
+/* Main content */
+.main{padding:22px;max-width:var(--max-width);margin:0 auto}
+.page-title{font-size:28px;margin:6px 0 8px}
+.page-subtitle{color:var(--muted);margin:0 0 18px}
+
+/* Cards and grid */
+.lesson-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:1100px){.lesson-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.lesson-grid{grid-template-columns:1fr}}
+
+.lesson-card{
+  background:var(--panel);border:1px solid var(--glass-border);padding:16px;border-radius:var(--radius);
+  transition:transform .14s ease, box-shadow .14s ease;
+}
+.lesson-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,255,65,0.04)}
+.lesson-title{font-weight:700;margin-bottom:6px}
+.lesson-meta{color:var(--muted);font-size:13px;margin-bottom:10px}
+.lesson-desc{font-size:13px;color:var(--muted);margin-bottom:12px}
+.lesson-actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* Buttons */
+.btn{display:inline-block;padding:8px 12px;border-radius:999px;border:1px solid var(--neon-weak);color:var(--neon);background:transparent;text-decoration:none;cursor:pointer}
+.btn.primary{background:rgba(0,255,65,0.06);border-color:var(--neon);color:var(--neon);font-weight:700}
+
+/* QR image */
+.qr-img{width:100%;height:auto;border-radius:8px;background:#000;padding:8px;border:1px solid var(--glass-border)}
+
+/* Success flash (centered modal style) */
+.success-flash{
+  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;
+  pointer-events:none;
+}
+.success-flash .card{
+  pointer-events:auto;min-width:320px;max-width:720px;padding:18px;border-radius:12px;background:linear-gradient(180deg,var(--panel),rgba(0,0,0,0.45));
+  border:1px solid var(--glass-border);text-align:center;backdrop-filter:blur(6px);
+}
+.success-flash h2{margin:0 0 8px;font-size:20px}
+.success-flash .muted{color:var(--muted);font-size:14px}
+
+/* Guard overlay for blocked devices */
+.guard-overlay{
+  position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.8));
+}
+.guard-box{max-width:720px;padding:20px;border-radius:12px;background:transparent;border:1px solid var(--glass-border);text-align:center}
+.guard-box p{color:var(--muted);margin:10px 0}
+
+/* Small utility */
+.small{font-size:13px;color:var(--muted)}
+.center{display:flex;align-items:center;justify-content:center}
+.hidden{display:none}
+
+/* Footer */
+.footer{padding:18px;border-top:1px solid var(--neon-weak);color:var(--muted);font-size:13px;text-align:center}
+
+/* Accessibility focus */
+a:focus,button:focus{outline:2px solid rgba(0,255,65,0.12);outline-offset:2px}
+
+/* Print and inert safety */
+@media print{.success-flash,.guard-overlay{display:none}}
