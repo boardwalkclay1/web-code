@@ -1,11 +1,30 @@
-(function(){
-  const key = 'thecode_paid_v1';
-  function hasLocal(cat){
-    try { return JSON.parse(localStorage.getItem(key) || '[]').some(p=>p.id===cat); } catch(e){ return false; }
+// guard.js — simple client-side guard (no server)
+export function hasLocalAccess(requiredCategory = 'web') {
+  const LOCAL_KEY = 'thecode_paid_v1';
+  try {
+    const arr = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
+    return arr.some(p => p.id === requiredCategory && p.verified === true);
+  } catch (e) {
+    return false;
   }
-  const url = new URL(location.href);
-  const cat = url.searchParams.get('category') || location.pathname.split('/').pop().replace('.html','');
-  if (!hasLocal(cat)) {
-    location.href = `/pay/index.html?category=${encodeURIComponent(cat)}`;
+}
+
+export function runGuard(options = {}) {
+  const REQUIRED_CATEGORY = options.category || 'web';
+  const PAY_URL = options.payUrl || '/pay/index.html?category=' + encodeURIComponent(REQUIRED_CATEGORY);
+  const overlay = document.getElementById('guard-overlay');
+
+  if (!hasLocalAccess(REQUIRED_CATEGORY)) {
+    if (overlay) {
+      overlay.classList.remove('hidden');
+      // short delay then redirect to pay page
+      setTimeout(() => { location.href = PAY_URL; }, 1200);
+    } else {
+      location.href = PAY_URL;
+    }
+    return false;
+  } else {
+    if (overlay) overlay.classList.add('hidden');
+    return true;
   }
-})();
+}
