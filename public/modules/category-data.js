@@ -1,39 +1,35 @@
-const CATEGORY_DATA = [
+// category-data.js
+export default [
   {
-    id: "websites",
-    title: "Websites",
-    description: "Build cinematic, modern, responsive websites from scratch.",
-    buildExamples: ["Business websites","Portfolio sites","E-commerce stores","Landing pages"],
-    pricing: { single:150, bundles:{ two:250, three:350, four:450 } },
-    contentUrl: "/lessons/websites.html",
-    paywallUrl: "/pay/index.html?category=websites"
+    id: "web",
+    title: "Web",
+    description: "Build modern, responsive websites: portfolios, business sites, e‑commerce, landing pages.",
+    examples: ["Portfolio","Business site","E‑commerce","Landing page"],
+    contentUrl: "/lessons/web.html",
+    payUrl: "/pay/index.html?category=web"
   },
   {
     id: "apps",
     title: "Apps",
-    description: "Build real apps with auth, databases, messaging.",
-    buildExamples: ["Social apps","Marketplace apps","Booking apps"],
-    pricing: { single:150, bundles:{ two:250, three:350, four:450 } },
+    description: "Client and server apps with auth, databases, and real features.",
+    examples: ["Social app","Marketplace","Booking app"],
     contentUrl: "/lessons/apps.html",
-    paywallUrl: "/pay/index.html?category=apps"
+    payUrl: "/pay/index.html?category=apps"
   },
   {
     id: "microcontrollers",
     title: "Microcontrollers",
-    description: "Control sensors, cameras, lights, motors, and devices.",
-    buildExamples: ["Smart home","Robotics","Environmental monitors"],
-    pricing: { single:150, bundles:{ two:250, three:350, four:450 } },
+    description: "Embedded projects: sensors, actuators, IoT prototypes.",
+    examples: ["Smart home","Robotics","Environmental monitor"],
     contentUrl: "/lessons/microcontrollers.html",
-    paywallUrl: "/pay/index.html?category=microcontrollers"
+    payUrl: "/pay/index.html?category=microcontrollers"
   },
   {
     id: "pentesting",
-    title: "Pen Testing & Ethical Hacking",
-    description: "Learn how systems get breached and how to protect them.",
-    buildExamples: ["Network scanners","Vulnerability scanners","Password auditing"],
-    pricing: { single:150, bundles:{ two:250, three:350, four:450 } },
+    title: "Pen Testing",
+    description: "Ethical hacking fundamentals, tools, and defensive practices.",
+    examples: ["Network scanning","Vulnerability testing","Password auditing"],
     contentUrl: "/lessons/pentesting.html",
-    paywallUrl: "/pay/index.html?category=pentesting"
+    payUrl: "/pay/index.html?category=pentesting"
   }
 ];
-export default CATEGORY_DATA;
